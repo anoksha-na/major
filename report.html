@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Image Upload</title>
+    <link rel="stylesheet" href="report.css">
+</head>
+<body>
+
+    <div class="upload-box">
+        <h2>Upload Image</h2>
+        <form action="/upload" method="post" enctype="multipart/form-data">
+            <input type="file" id="imageUpload" name="image" accept="image/*">
+            <button type="submit">Submit</button>
+        </form>
+    </div>
+
+    <script>
+        document.getElementById('imageUpload').onchange = function (event) {
+            const reader = new FileReader();
+            reader.onload = function () {
+                const previewImage = document.createElement('img');
+                previewImage.src = reader.result;
+                previewImage.style.maxWidth = '100%';
+                document.querySelector('.upload-box').appendChild(previewImage);
+            };
+            reader.readAsDataURL(event.target.files[0]);
+        };
+    </script>
+
+</body>
+</html>

@@ -1,0 +1,79 @@
+@import url('https://fonts.googleapis.com/css2?family=Open+Sans:wght@400;700&display=swap');
+
+:root {
+    --primary-color: #00e5ff; /* Light Cyan */
+    --primary-color-dark: #00b0c8; /* Dark Cyan */
+    --primary-color-light: #99f6ff; /* Lighter Cyan */
+    --secondary-color: #ffffff; /* White */
+    --text-dark: #3a3a3a; /* Dark gray */
+    --text-light: #d1dbe6; /* Light gray */
+    --background-color: #f4f4f4; /* Light background */
+}
+
+* {
+    padding: 0;
+    margin: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: "Open Sans", sans-serif;
+    background-image: url("i3.jpeg");
+    background-position: center;
+    background-size: cover;
+    background-attachment: fixed;
+    color: var(--text-dark);
+}
+.upload-box {
+    width: 320px;
+    height: 180px;
+    margin: 20px auto;
+    padding: 20px;
+    border: 2px solid var(--primary-color);
+    border-radius: 10px;
+    text-align: center;
+    background-color: var(--secondary-color);
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+    margin-top: 17rem;
+}
+
+.upload-box h2 {
+    margin-bottom: 15px;
+    font-size: 18px;
+    color: var(--primary-color-dark);
+}
+
+.upload-box input[type="file"] {
+    margin-bottom: 15px;
+    padding: 5px;
+    border: 1px solid var(--primary-color);
+    border-radius: 5px;
+    cursor: pointer;
+    transition: border-color 0.3s ease;
+}
+
+.upload-box input[type="file"]:hover {
+    border-color: var(--primary-color-dark);
+}
+
+.upload-box button {
+    padding: 10px 20px;
+    background-color: var(--primary-color);
+    color: black;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+.upload-box button:hover {
+    background-color: var(--primary-color-dark);
+}
+
+.upload-box img {
+    margin-top: 20px;
+    max-width: 100%;
+    border-radius: 10px;
+    border: 1px solid var(--text-light);
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+}
