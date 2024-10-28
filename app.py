@@ -6,9 +6,10 @@ import json
 import pickle
 import numpy as np
 import nltk
+from keras.models import load_model
+
 nltk.download('punkt')
 from nltk.stem import WordNetLemmatizer
-from keras.models import load_model
 
 app = Flask(__name__)
 app.secret_key = 'your_secret_key'
@@ -151,10 +152,10 @@ def logout():
 @app.route('/chat', methods=['POST'])
 def chat():
     """Handle chat messages from the user."""
-    message = request.json['message']
+    message = request.json['message']  # Expecting 'message' key
     ints = predict_class(message)
     res = get_response(ints, intents)
-    return jsonify(res)
+    return jsonify(res)  # Return response as JSON
 
 if __name__ == "__main__":
     app.run(debug=True)
