@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Chatbot - Medi-Genius</title>
+    <link rel="stylesheet" href="bot.css">
+    <link rel="stylesheet" href="https://pro.fontawesome.com/releases/v5.10.0/css/all.css" integrity="sha384-AYmEC3Yw5cVb3ZcuHtOA93w35dYTsvhLPVnYs9eStHfGJvOvKxVfELGroGkvsg+p" crossorigin="anonymous" />
+</head>
+
+<body>
+    <header class="header">
+        <div class="logo">Medi-Genius</div>
+        <nav class="sidebar">
+            <ul>
+                <li><a href="dash.html"><i class="fas fa-arrow-left"></i> Back</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <main class="chat-container">
+        <div class="chat-box" id="chat-box"></div>
+
+        <form id="chat-form" method="POST" class="input-container">
+            <input type="text" id="user-input" name="question" placeholder="Type your message..." required>
+            <button type="submit" id="send-btn"><i class="fas fa-paper-plane"></i></button>
+        </form>
+    </main>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function () {
+            document.getElementById('chat-form').addEventListener('submit', function (event) {
+                event.preventDefault();
+                const userInput = document.getElementById('user-input').value.trim();
+                if (userInput !== '') {
+                    const userMessage = document.createElement('div');
+                    userMessage.classList.add('message', 'user-message');
+                    userMessage.textContent = userInput;
+                    document.getElementById('chat-box').appendChild(userMessage);
+
+                    fetch('/index_chat', {
+                        method: 'POST',
+                        headers: { 'Content-Type': 'application/json' },
+                        body: JSON.stringify({ question: userInput })
+                    })
+                    .then(response => response.json())
+                    .then(data => {
+                        const botMessage = document.createElement('div');
+                        botMessage.classList.add('message', 'bot-message');
+                        botMessage.textContent = data.response; // Get bot response from the server
+                        document.getElementById('chat-box').appendChild(botMessage);
+
+                        // Scroll to the bottom of the chat
+                        const chatBox = document.getElementById('chat-box');
+                        chatBox.scrollTop = chatBox.scrollHeight; // Scroll to bottom
+                    })
+                    .catch(error => console.error('Error:', error));
+
+                    document.getElementById('user-input').value = ''; // Clear input
+                }
+            });
+        });
+    </script>
+</body>
+
+</html>
