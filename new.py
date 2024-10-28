@@ -202,7 +202,7 @@ def upload():
 
             return redirect(url_for('result', prediction=prediction, image_filename=image.filename))
     elif request.method == 'GET':
-        return render_template('upload.html')
+        return render_template('report.html')
 
 @app.route('/result')
 def result():
