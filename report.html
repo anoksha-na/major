@@ -16,6 +16,13 @@
         </form>
     </div>
 
+    {% if filename %}
+    <div class="image-display">
+        <h3>Uploaded Image:</h3>
+        <img src="{{ file_url }}" alt="Uploaded Image">
+    </div>
+    {% endif %}
+
     <script>
         document.getElementById('imageUpload').onchange = function (event) {
             const reader = new FileReader();
