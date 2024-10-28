@@ -1,0 +1,357 @@
+@import url('https://fonts.googleapis.com/css2?family=Open+Sans:wght@400;700&display=swap');
+
+:root {
+  --primary-color: #a2e5f4;
+  --primary-color-dark: #0f93c7;
+  --primary-color-light: #bcefef;
+  --secondary-color: #0c0b0b;
+  --text-dark: #333333;
+  --text-light: #363750;
+  --white: #ffffff;
+  --max-width: 1200px;
+}
+
+body {
+  font-family: "Open Sans", sans-serif;
+  background-image: url("i3.jpeg");
+  background-position: center center;
+  background-size: cover;
+  background-repeat: no-repeat;
+  height: 100vh; /* Adjusted for full viewport height */
+  background-attachment: fixed;
+  margin: 0;
+}
+
+.header, .sidebar, .main-content {
+  display: flex;
+  flex-wrap: wrap; /* Allow elements to wrap on smaller screens */
+}
+
+.header {
+  background-color: transparent; /* Transparent header */
+  color: var(--primary-color-dark);
+  padding: 15px 20px;
+  align-items: center;
+  font-size: 20px;
+}
+
+.logo {
+  font-size: 1.8rem;
+  font-weight: 600;
+  color: var(--primary-color);
+  margin-left: 40px;
+}
+
+.sidebar {
+  background-color: transparent; /* Transparent sidebar */
+  color: var(--primary-color);
+  width: 220px;
+  padding: 20px;
+  margin-left: 50rem; /* Adjusted for layout */
+}
+
+.sidebar ul {
+  list-style: none;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 1rem;
+  font-size: 19px;
+  font-weight: 600;
+  color: var(--primary-color);
+}
+
+.sidebar ul a:hover {
+  color: var(--primary-color-dark);
+  transform: scale(1.1);
+  font-weight: bold;
+  opacity: 0.9;
+}
+
+.sidebar ul li {
+  display: inline-block;
+  margin-right: 20px;
+}
+
+.sidebar ul li:last-child {
+  margin-right: 0; /* Remove margin from the last item */
+}
+
+.sidebar a {
+  color: var(--primary-color);
+  text-decoration: none;
+  display: flex;
+  align-items: center;
+  padding: 10px; /* Increased padding for better visual separation */
+}
+
+.sidebar a i {
+  margin-right: 10px;
+  font-size: 17px;
+  color: var(--primary-color-dark);
+}
+
+.sidebar a:hover {
+  color: var(--primary-color-light);
+}
+
+.user-info {
+  font-size: 35px;
+  font-weight: 600;
+  color: var(--primary-color);
+  text-align: center;
+}
+
+.main-content {
+  background-color: transparent; /* Lighter background for main content */
+  border-radius: 5px;
+  box-shadow: transparent;
+}
+
+.header__form,
+.header__form1 {
+  width: 100%;
+  max-width: 200px; /* Adjusted max-width for both forms */
+  height: auto; /* Remove fixed height */
+  margin: 0 auto;
+  margin-top: 50px; /* Adjust the top margin as needed */
+  text-align: center;
+  display: flex;
+  flex-direction: column; /* Stack buttons vertically */
+  align-items: center; /* Center align buttons */
+}
+
+.header__form button,
+.header__form1 button {
+  width: 100%;
+  padding: 10px;
+  border: none;
+  border-radius: 5px;
+  background-color: var(--primary-color);
+  color: var(--primary-color-dark);
+  font-size: 16px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+  margin-bottom: 1rem; /* Reduced gap between buttons */
+  border-radius: 1.5rem;
+}
+
+.header__form a,
+.header__form1 a {
+  text-decoration: none; /* Remove underline */
+  color: inherit; /* Inherit the button's text color */
+  display: block; /* Ensure the entire button is clickable */
+  width: 100%;
+  height: 100%;
+}
+
+.header__form button:last-child,
+.header__form1 button:last-child {
+  margin-bottom: 0; /* Remove margin for the last button */
+}
+
+.header__form button:hover,
+.header__form1 button:hover {
+  background-color: var(--primary-color-light);
+}
+
+@media (max-width: 768px) {
+  .header, .sidebar, .main-content {
+    flex-direction: column; /* Stack elements on smaller screens */
+  }
+
+  .sidebar {
+    flex: unset; /* Remove flex for sidebar on small screens */
+    width: 100%; /* Make sidebar full width on small screens */
+    order: 2; /* Move sidebar below header on small screens */
+    margin-left: 0; /* Reset left margin */
+  }
+
+  .main-content {
+    order: 1; /* Move main content above sidebar on small screens */
+  }
+
+  .header__form, .header__form1 {
+    max-width: 90%; /* Adjust to make forms responsive */
+    margin-top: 20px; /* Reduce top margin for smaller screens */
+  }
+}
+@import url('https://fonts.googleapis.com/css2?family=Open+Sans:wght@400;700&display=swap');
+
+:root {
+  --primary-color: #a2e5f4;
+  --primary-color-dark: #0f93c7;
+  --primary-color-light: #bcefef;
+  --secondary-color: #0c0b0b;
+  --text-dark: #333333;
+  --text-light: #363750;
+  --white: #ffffff;
+  --max-width: 1200px;
+}
+
+body {
+  font-family: "Open Sans", sans-serif;
+  background-image: url("i3.jpeg");
+  background-position: center center;
+  background-size: cover;
+  background-repeat: no-repeat;
+  height: 100vh; /* Adjusted for full viewport height */
+  background-attachment: fixed;
+  margin: 0;
+}
+
+.header, .sidebar, .main-content {
+  display: flex;
+  flex-wrap: wrap; /* Allow elements to wrap on smaller screens */
+}
+
+.header {
+  background-color: transparent; /* Transparent header */
+  color: var(--primary-color-dark);
+  padding: 15px 20px;
+  align-items: center;
+  font-size: 20px;
+}
+
+.logo {
+  font-size: 1.8rem;
+  font-weight: 600;
+  color: var(--primary-color);
+  margin-left: 40px;
+}
+
+.sidebar {
+  background-color: transparent; /* Transparent sidebar */
+  color: var(--primary-color);
+  width: 220px;
+  padding: 20px;
+  margin-left: 50rem; /* Adjusted for layout */
+}
+
+.sidebar ul {
+  list-style: none;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 1rem;
+  font-size: 19px;
+  font-weight: 600;
+  color: var(--primary-color);
+}
+
+.sidebar ul a:hover {
+  color: var(--primary-color-dark);
+  transform: scale(1.1);
+  font-weight: bold;
+  opacity: 0.9;
+}
+
+.sidebar ul li {
+  display: inline-block;
+  margin-right: 20px;
+}
+
+.sidebar ul li:last-child {
+  margin-right: 0; /* Remove margin from the last item */
+}
+
+.sidebar a {
+  color: var(--primary-color);
+  text-decoration: none;
+  display: flex;
+  align-items: center;
+  padding: 10px; /* Increased padding for better visual separation */
+}
+
+.sidebar a i {
+  margin-right: 10px;
+  font-size: 17px;
+  color: var(--primary-color-dark);
+}
+
+.sidebar a:hover {
+  color: var(--primary-color-light);
+}
+
+.user-info {
+  font-size: 35px;
+  font-weight: 600;
+  color: var(--primary-color);
+  text-align: center;
+}
+
+.main-content {
+  background-color: transparent; /* Lighter background for main content */
+  border-radius: 5px;
+  box-shadow: transparent;
+}
+
+.header__form,
+.header__form1 {
+  width: 100%;
+  max-width: 200px; /* Adjusted max-width for both forms */
+  height: auto; /* Remove fixed height */
+  margin: 0 auto;
+  margin-top: 50px; /* Adjust the top margin as needed */
+  text-align: center;
+  display: flex;
+  flex-direction: column; /* Stack buttons vertically */
+  align-items: center; /* Center align buttons */
+}
+
+.header__form button,
+.header__form1 button {
+  width: 100%;
+  padding: 10px;
+  border: none;
+  border-radius: 5px;
+  background-color: var(--primary-color);
+  color: var(--white);
+  font-size: 16px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+  margin-bottom: 1rem; /* Reduced gap between buttons */
+  border-radius: 1.5rem;
+}
+
+.header__form a,
+.header__form1 a {
+  text-decoration: none; /* Remove underline */
+  color: black; /* Inherit the button's text color */
+  display: block; /* Ensure the entire button is clickable */
+  width: 100%;
+  height: 100%;
+  font-size: 1.2rem;
+}
+
+.header__form button:last-child,
+.header__form1 button:last-child {
+  margin-bottom: 0; /* Remove margin for the last button */
+}
+
+.header__form button:hover,
+.header__form1 button:hover {
+  background-color: var(--primary-color-light);
+}
+
+@media (max-width: 768px) {
+  .header, .sidebar, .main-content {
+    flex-direction: column; /* Stack elements on smaller screens */
+  }
+
+  .sidebar {
+    flex: unset; /* Remove flex for sidebar on small screens */
+    width: 100%; /* Make sidebar full width on small screens */
+    order: 2; /* Move sidebar below header on small screens */
+    margin-left: 0; /* Reset left margin */
+  }
+
+  .main-content {
+    order: 1; /* Move main content above sidebar on small screens */
+  }
+
+  .header__form, .header__form1 {
+    max-width: 90%; /* Adjust to make forms responsive */
+    margin-top: 20px; /* Reduce top margin for smaller screens */
+  }
+}
