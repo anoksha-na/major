@@ -1,6 +1,8 @@
 from flask import Flask, render_template, request, redirect, url_for, flash, session, jsonify
 from flask_sqlalchemy import SQLAlchemy
 from werkzeug.security import generate_password_hash, check_password_hash
+from werkzeug.utils import secure_filename
+import os
 import random
 import json
 import pickle
@@ -18,6 +20,17 @@ app.secret_key = 'your_secret_key'
 app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///users.db'
 db = SQLAlchemy(app)
 
+# Folder to store uploaded images
+UPLOAD_FOLDER = 'uploads/'
+app.config['UPLOAD_FOLDER'] = UPLOAD_FOLDER
+
+# Ensure the upload folder exists
+if not os.path.exists(UPLOAD_FOLDER):
+    os.makedirs(UPLOAD_FOLDER)
+
+# Allowed file extensions for upload
+ALLOWED_EXTENSIONS = {'png', 'jpg', 'jpeg', 'gif'}
+
 # User model
 class User(db.Model):
     id = db.Column(db.Integer, primary_key=True)
@@ -31,6 +44,10 @@ intents = json.loads(open(r"C:\Users\Ananya\Desktop\major_prjct\intents.json").r
 words = pickle.load(open('words.pkl', 'rb'))
 classes = pickle.load(open('classes.pkl', 'rb'))
 model = load_model('chatbot_model.h5')
+
+def allowed_file(filename):
+    """Check if the uploaded file is allowed based on the extension."""
+    return '.' in filename and filename.rsplit('.', 1)[1].lower() in ALLOWED_EXTENSIONS
 
 def clean_up_sentence(sentence):
     """Tokenize and lemmatize the input sentence."""
@@ -88,6 +105,40 @@ def dash_page():
 @app.route('/bot')
 def bot_page():
     return render_template('bot.html')
+
+# File upload route
+@app.route('/upload', methods=['GET', 'POST'])
+def upload_file():
+    """Handle image file upload."""
+    if request.method == 'POST':
+        # Check if the post request has the file part
+        if 'image' not in request.files:
+            flash('No file part', 'error')
+            return redirect(request.url)
+        
+        file = request.files['image']
+        
+        # If user does not select a file, browser also
+        # submits an empty part without filename
+        if file.filename == '':
+            flash('No selected file', 'error')
+            return redirect(request.url)
+
+        if file and allowed_file(file.filename):
+            # Secure the file name and save it to the upload folder
+            filename = secure_filename(file.filename)
+            file.save(os.path.join(app.config['UPLOAD_FOLDER'], filename))
+            flash('File uploaded successfully!', 'success')
+            return redirect(url_for('report_page', filename=filename))
+
+    return render_template('report.html')
+
+# Route to display uploaded file
+@app.route('/report/<filename>')
+def report_page(filename):
+    """Render the report page with the uploaded image."""
+    file_url = os.path.join(app.config['UPLOAD_FOLDER'], filename)
+    return render_template('report.html', filename=filename, file_url=file_url)
 
 # Signup route
 @app.route('/signup', methods=['POST'])
